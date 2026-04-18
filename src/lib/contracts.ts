@@ -120,9 +120,12 @@ export function getVaultFunction(functionName: string): string {
  * PLSA-specific contract v3 (deployed on testnet)
  */
 export const PLSA_CONTRACTS = {
-  // v3.2 deployment — adds UserDeposits.time_unit_sec (admin-tunable for accelerated testing)
-  // testnet currently set to 60 sec/"day" via set_time_unit; mainnet would be 86400
-  PACKAGE_ID: "0x76f88299ea955a56cc3d0a21dfc1e8dc29a51ddfdf232d21a09507cd7098f951",
+  // v3.3 deployment — adds plsa_share_code module with on-chain opaque short-codes
+  // for privacy-preserving referral invite links. Package upgrade tx:
+  //   6mQ2QBH3LxmFfFPHSRuvRFviAKNE92uxBhfrL4jKbQTN (2026-04-18)
+  // Original package still at 0x76f8..951 (permanent); new PackageID below is
+  // the v3.3 address that includes plsa_share_code.
+  PACKAGE_ID: "0x832774077bb33391111ed47b44736172c7d7e01cb07eb31d9b1f5cba0081bc51",
   ADMIN_CAP_ID: "0xdc779b757115291379abad285cb2101dfd2f6e05a533a70e3c3ec8e36a43b104",
   CONFIG_ID: "0xd8bc16121ae47b1dc39f83aa4b229c7a5a67582cedccf6fa5153260c197476b8",
   USER_DEPOSITS_ID: "0xded9389fb1c96cead84bf3b5008966df54d898c2e69f33d6eb27722b710e58d2",
@@ -132,7 +135,15 @@ export const PLSA_CONTRACTS = {
   DRAW_REGISTRY_ID: "0xcdc62ef804cb881df0547421b0fb1b2e67ee1b2b3f2f2a4406d4c9ce1fe4b5ee",
   REFERRAL_CONFIG_ID: "0xbcdba1b9eb1e14a3010620a8ef5ec2cfe6a17f8f3fba4e2f9db7de3ac972a64f",
   REFERRAL_REGISTRY_ID: "0xd206702a6ba3240bbc7dec7148333879dad628fdb5c9c8540d3a812612c72cee",
+  /**
+   * Shared object of type `plsa::plsa_share_code::ShareCodeRegistry`, created by
+   * `init_registry` in v3.3. Tx digest: post-upgrade init_registry call.
+   */
+  SHARE_CODE_REGISTRY_ID: "0x648f8ffd9f8d3f1ad5283a72dd9cda47a39be918ffa85529e054ade7cc90f7d7",
 }
+
+/** Whether the on-chain share-code registry has been deployed + configured. */
+export const SHARE_CODE_ENABLED = PLSA_CONTRACTS.SHARE_CODE_REGISTRY_ID !== ""
 
 /** PendingRedemption status codes (from plsa_vault::STATUS_*) */
 export const REDEMPTION_STATUS = {
