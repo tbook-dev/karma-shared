@@ -1,6 +1,6 @@
-import { fetchCurrentDrawRound } from "@tbook/shared/lib/draw-round"
-import { getKvClient, KV_KEYS } from "@tbook/shared/lib/kv-client"
-import type { WeeklyPrizeConfig } from "@tbook/shared/lib/prize-config/schema"
+import { fetchCurrentDrawRound } from "../draw-round"
+import { getKvClient, KV_KEYS } from "../kv-client"
+import type { WeeklyPrizeConfig } from "./schema"
 
 export const DEFAULT_CURRENT_PRIZE_CONFIG_LIMIT = 10
 export const MAX_CURRENT_PRIZE_CONFIG_LIMIT = 50

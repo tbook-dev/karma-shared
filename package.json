@@ -2,9 +2,19 @@
   "name": "@tbook/shared",
   "version": "1.0.0",
   "description": "Shared chain constants + utilities for karma-web and karma-admin",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "type": "module",
+  "files": ["src", "README.md"],
+  "exports": {
+    "./lib/contracts": "./src/lib/contracts.ts",
+    "./lib/utils": "./src/lib/utils.ts",
+    "./lib/sui-config": "./src/lib/sui-config.ts",
+    "./lib/draw-round": "./src/lib/draw-round.ts",
+    "./lib/kv-client": "./src/lib/kv-client.ts",
+    "./lib/prize-config/schema": "./src/lib/prize-config/schema.ts",
+    "./lib/prize-config/current": "./src/lib/prize-config/current.ts",
+    "./hooks/use-sign-and-execute-legacy": "./src/hooks/use-sign-and-execute-legacy.ts",
+    "./providers/sui-provider": "./src/providers/sui-provider.tsx"
+  },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
     "access": "restricted"
@@ -14,9 +24,7 @@
     "url": "git+https://github.com/tbook-dev/karma-shared.git"
   },
   "scripts": {
-    "build": "tsc --project tsconfig.json",
-    "typecheck": "tsc --project tsconfig.json --noEmit",
-    "test": "vitest run"
+    "typecheck": "tsc --project tsconfig.json --noEmit"
   },
   "peerDependencies": {
     "@mysten/dapp-kit": "^1.0.4",
@@ -29,9 +37,12 @@
     "zod": "^3.23.0"
   },
   "devDependencies": {
+    "@mysten/dapp-kit": "^1.0.4",
+    "@mysten/sui": "^2.15.0",
+    "@tanstack/react-query": "5.90.7",
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.2",
-    "typescript": "^5.7.2",
-    "vitest": "^2.1.0"
+    "react": "19.2.0",
+    "typescript": "^5.7.2"
   }
 }

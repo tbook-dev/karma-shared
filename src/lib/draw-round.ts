@@ -1,4 +1,4 @@
-import { PLSA_CONTRACTS, getSuiRpcUrl } from "@tbook/shared/lib/contracts"
+import { PLSA_CONTRACTS, getSuiRpcUrl } from "./contracts"
 
 /**
  * Server-side helper: read `DrawState.current_round` directly from the chain via

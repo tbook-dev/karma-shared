@@ -4,7 +4,7 @@ import type React from "react"
 import { SuiClientProvider, WalletProvider } from "@mysten/dapp-kit"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { useState } from "react"
-import { networkConfig } from "@tbook/shared/lib/sui-config"
+import { networkConfig } from "../lib/sui-config"
 import { SuiJsonRpcClient } from "@mysten/sui/jsonRpc"
 import "@mysten/dapp-kit/dist/index.css"
 
