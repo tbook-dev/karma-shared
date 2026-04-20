@@ -126,6 +126,7 @@ export const PLSA_CONTRACTS = {
   // Original package still at 0x76f8..951 (permanent); new PackageID below is
   // the v3.3 address that includes plsa_share_code.
   PACKAGE_ID: "0x832774077bb33391111ed47b44736172c7d7e01cb07eb31d9b1f5cba0081bc51",
+  ORIGINAL_PACKAGE_ID: "0x76f88299ea955a56cc3d0a21dfc1e8dc29a51ddfdf232d21a09507cd7098f951",
   ADMIN_CAP_ID: "0xdc779b757115291379abad285cb2101dfd2f6e05a533a70e3c3ec8e36a43b104",
   CONFIG_ID: "0xd8bc16121ae47b1dc39f83aa4b229c7a5a67582cedccf6fa5153260c197476b8",
   USER_DEPOSITS_ID: "0xded9389fb1c96cead84bf3b5008966df54d898c2e69f33d6eb27722b710e58d2",
@@ -184,7 +185,8 @@ export const SUI_RANDOM_OBJECT_ID = "0x8"
 /**
  * AdminCap Move type fully-qualified string (for getOwnedObjects filter).
  */
-export const PLSA_ADMIN_CAP_TYPE = `${PLSA_CONTRACTS.PACKAGE_ID}::plsa_vault::AdminCap`
+// AdminCap type is pinned at ORIGINAL package (created by v3.2 init); see docs
+export const PLSA_ADMIN_CAP_TYPE = `${PLSA_CONTRACTS.ORIGINAL_PACKAGE_ID}::plsa_vault::AdminCap`
 
 /**
  * Convenience re-exports.
