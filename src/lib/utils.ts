@@ -77,6 +77,68 @@ export function formatDateTime(value: string) {
   }).format(new Date(value))
 }
 
+/**
+ * Full timestamp in UTC, en-US ("Apr 20, 2026, 14:45:32 UTC").
+ * 24-hour clock so audit trails read unambiguously across timezones.
+ * Accepts Date | ISO string | epoch ms.
+ */
+export function formatTimestamp(value: string | number | Date): string {
+  const d = value instanceof Date ? value : new Date(value)
+  if (Number.isNaN(d.getTime())) return String(value)
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+    timeZone: "UTC",
+    timeZoneName: "short",
+  }).format(d)
+}
+
+/**
+ * Clock-time only, UTC + en-US ("14:45:32 UTC"). For in-memory log scrolls
+ * where the date is implicit from context.
+ */
+export function formatLogTime(value: string | number | Date = new Date()): string {
+  const d = value instanceof Date ? value : new Date(value)
+  if (Number.isNaN(d.getTime())) return String(value)
+  return new Intl.DateTimeFormat("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+    timeZone: "UTC",
+    timeZoneName: "short",
+  }).format(d)
+}
+
+/**
+ * Draw-time display, always in UTC and en-US ("Sat, Apr 25, 2:00 PM UTC").
+ * Draws happen at 14:00 UTC on Saturdays, so we pin the timezone to UTC —
+ * every user sees the same wall-clock time regardless of browser locale.
+ */
+export function formatDrawTime(value: string): string {
+  try {
+    const d = new Date(value)
+    if (Number.isNaN(d.getTime())) return value
+    return new Intl.DateTimeFormat("en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+      timeZone: "UTC",
+      timeZoneName: "short",
+    }).format(d)
+  } catch {
+    return value
+  }
+}
+
 export function getNextDrawTime(now = new Date()) {
   const next = new Date(now)
   const utcDay = next.getUTCDay()
