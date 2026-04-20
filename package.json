@@ -1,5 +1,5 @@
 {
-  "name": "@tbook/shared",
+  "name": "@tbook-dev/shared",
   "version": "1.0.0",
   "description": "Shared chain constants + utilities for karma-web and karma-admin",
   "type": "module",
